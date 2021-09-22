@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Павел Донцов](https://up.htmlacademy.ru/javascript/24/user/1818419).
-* Наставник: `Неизвестно`.
+* Наставник: [Дмитрий Гуляев](https://htmlacademy.ru/profile/dima).
 
 ---
 
