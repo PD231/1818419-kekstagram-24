@@ -1,18 +1,21 @@
 
 //------------------- Функция 1 ------------------------------
 
-const choosingNumber = function (from, to) {
-  return (from >= 0) ? Math.floor(Math.random() * (to - from + 1)) + from : ('Минимальное число в диапозоне не может быть меньше 0');
+const getRandomNumber  = function (from, to) {
+  if (from < 0) {
+    return ('Минимальное число в диапозоне не может быть меньше 0');
+  }
+  return Math.floor(Math.random() * (to - from + 1)) + from;
 };
 
-choosingNumber(1, 5);
+getRandomNumber(1, 5);
 
 
 //------------------- Функция 2 ------------------------------
 
 
-const checkLengthString = function (lengthString, maxSymbol) {
-  return (lengthString <= maxSymbol);
+const checkLengthString = function (stringLength, maxSymbols) {
+  return (stringLength <= maxSymbols);
 };
 
 checkLengthString(109, 100);
