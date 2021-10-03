@@ -31,12 +31,12 @@ const createDescriptionPhoto = () => {
     'Достаточно',
   ];
 
-  const LIST_PROFILES = [];
+  const LIST_PHOTO = [];
   const COUNT = 25;
   for(let step = 0; step < COUNT; step++) {
     const ID = step + 1;
     const URL = `photos/${ID}.jpg`;
-    const SOME_PROFILE = {
+    const SOME_PHOTO = {
       id: ID,
       url: URL,
       DESCRIPTION: DESCRIPTIONS[getRandomPositiveInteger(0, DESCRIPTIONS.length -1)],
@@ -88,20 +88,20 @@ const createDescriptionPhoto = () => {
       const AVATAR = `img/avatar-${  getRandomPositiveInteger(1, 6)  }.svg`;
 
       return {
-        id: SOME_PROFILE.id * 2,
+        id: SOME_PHOTO.id * 2,
         avatar: AVATAR,
         message: [MESSAGES[getRandomPositiveInteger(0, MESSAGES.length - 1)]],
         name: NAMES[getRandomPositiveInteger(0, NAMES.length -1)],
       };
     };
 
-    SOME_PROFILE.comments = CREATE_COMMENT();
+    SOME_PHOTO.comments = CREATE_COMMENT();
 
 
-    LIST_PROFILES[step] = SOME_PROFILE;
+    LIST_PHOTO[step] = SOME_PHOTO;
   }
 
-  return LIST_PROFILES;
+  return LIST_PHOTO;
 };
 
 createDescriptionPhoto();
