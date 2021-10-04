@@ -15,25 +15,68 @@ const isLengthStringOk = (stringLength, maxSymbols) => (stringLength <= maxSymbo
 isLengthStringOk(109, 100);
 //___________________________________________________________
 
+const DESCRIPTIONS = [
+  'Природа',
+  'На шашлыках',
+  'Я на море',
+  'Я на даче',
+  'Я пью',
+  'Я ем',
+  'Скоро в отпуск',
+  'Будте нате',
+  'Мамкин бродяга, папкин симпотяга',
+  'Достаточно',
+];
 
-const createDescriptionPhoto = () => {
+const MESSAGES = [
+  'Всё отлично!',
+  'В целом всё неплохо. Но не всё.',
+  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
+  'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
+  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
+  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
+];
 
-  const descriptions = [
-    'Природа',
-    'На шашлыках',
-    'Я на море',
-    'Я на даче',
-    'Я пью',
-    'Я ем',
-    'Скоро в отпуск',
-    'Будте нате',
-    'Мамкин бродяга, папкин симпотяга',
-    'Достаточно',
-  ];
 
-  const listPhoto = [];
-  const count = 25;
-  for(let step = 0; step < count; step++) {
+/* список персонажей вселенной видеоигры Red Dead Redemption 2 от компании Rockstar Games.
+ https://ru.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BF%D0%B5%D1%80%D1%81%D0%BE%D0%BD%D0%B0%D0%B6%D0%B5%D0%B9_Red_Dead_Redemption_2*/
+
+const NAMES = [
+  'Датч Ван дер Линде',
+  'Артур Морган',
+  'Джон Марстон',
+  'Эбигейл Робертс',
+  'Джек Марстон',
+  'Хозия Мэттьюз',
+  'Билл Уильямсон',
+  'Хавьер Эскуэла',
+  'Чарльз Смит',
+  'Ленни Саммерс',
+  'Шон Макгуайр',
+  'Мика Белл',
+  'Сэди Адлер',
+  'Дядюшка',
+  'Мистер Пирсон',
+  'Сьюзан Гримшо',
+  'Молли О’Ши',
+  'Карен Джонс',
+  'Мэри-Бет Гаскилл',
+  'Тилли Джексон',
+  'Леопольд Штраус',
+  'Джосайя Трелони',
+  'Пастор Суонсон',
+  'Киран Даффи',
+  'Эндрю Милтон',
+];
+
+const NUMBER_OF_PHOTOS = 25;
+const NUMBER_OF_COMMENTS = 3;
+
+const createDescriptionPhoto = (descriptions, numberOfPhotos) => {
+
+  const photos = [];
+
+  for(let step = 0; step < numberOfPhotos; step++) {
     const id = step + 1;
     const url = `photos/${id}.jpg`;
     const somePhoto = {
@@ -43,53 +86,12 @@ const createDescriptionPhoto = () => {
       likes: getRandomPositiveInteger(15, 200),
     };
 
-    const createComments = () => {
-
-      const messages = [
-        'Всё отлично!',
-        'В целом всё неплохо. Но не всё.',
-        'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
-        'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
-        'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
-        'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
-      ];
-      /* список персонажей вселенной видеоигры Red Dead Redemption 2 от компании Rockstar Games.
- https://ru.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BF%D0%B5%D1%80%D1%81%D0%BE%D0%BD%D0%B0%D0%B6%D0%B5%D0%B9_Red_Dead_Redemption_2*/
-
-      const names = [
-        'Датч Ван дер Линде',
-        'Артур Морган',
-        'Джон Марстон',
-        'Эбигейл Робертс',
-        'Джек Марстон',
-        'Хозия Мэттьюз',
-        'Билл Уильямсон',
-        'Хавьер Эскуэла',
-        'Чарльз Смит',
-        'Ленни Саммерс',
-        'Шон Макгуайр',
-        'Мика Белл',
-        'Сэди Адлер',
-        'Дядюшка',
-        'Мистер Пирсон',
-        'Сьюзан Гримшо',
-        'Молли О’Ши',
-        'Карен Джонс',
-        'Мэри-Бет Гаскилл',
-        'Тилли Джексон',
-        'Леопольд Штраус',
-        'Джосайя Трелони',
-        'Пастор Суонсон',
-        'Киран Даффи',
-        'Эндрю Милтон',
-      ];
-
+    const createComments = (messages, names, numberOfComments) => {
 
       const comments = [];
-      const commentsCount = 3;
-      for(let idexComment = 0; idexComment <= commentsCount; idexComment++) {
+      for(let idexComment = 0; idexComment <= numberOfComments; idexComment++) {
         const someComent = {
-          id: idexComment + (commentsCount + 1) * somePhoto.id,
+          id: idexComment + (numberOfComments + 1) * somePhoto.id,
           avatar: `img/avatar-${  getRandomPositiveInteger(1, 6)  }.svg`,
           message: [messages[getRandomPositiveInteger(0, messages.length - 1)]],
           name: names[getRandomPositiveInteger(0, names.length -1)],
@@ -98,13 +100,13 @@ const createDescriptionPhoto = () => {
       } return comments;
     };
 
-    somePhoto.comments = createComments();
+    somePhoto.comments = createComments(MESSAGES, NAMES, NUMBER_OF_COMMENTS);
 
 
-    listPhoto[step] = somePhoto;
+    photos[step] = somePhoto;
   }
 
-  return listPhoto;
+  return photos;
 };
 
-createDescriptionPhoto();
+createDescriptionPhoto(DESCRIPTIONS, NUMBER_OF_PHOTOS);
