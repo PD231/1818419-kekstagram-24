@@ -10,15 +10,15 @@ const getRandomPositiveInteger = (from, to) => {
 };
 
 
-const checkLengthString = (stringLength, maxSymbols) => (stringLength <= maxSymbols);
+const isLengthStringOk = (stringLength, maxSymbols) => (stringLength <= maxSymbols);
 
-checkLengthString(109, 100);
+isLengthStringOk(109, 100);
 //___________________________________________________________
 
 
 const createDescriptionPhoto = () => {
 
-  const DESCRIPTIONS = [
+  const descriptions = [
     'Природа',
     'На шашлыках',
     'Я на море',
@@ -31,21 +31,21 @@ const createDescriptionPhoto = () => {
     'Достаточно',
   ];
 
-  const LIST_PHOTO = [];
-  const COUNT = 25;
-  for(let step = 0; step < COUNT; step++) {
-    const ID = step + 1;
-    const URL = `photos/${ID}.jpg`;
-    const SOME_PHOTO = {
-      id: ID,
-      url: URL,
-      DESCRIPTION: DESCRIPTIONS[getRandomPositiveInteger(0, DESCRIPTIONS.length -1)],
+  const listPhoto = [];
+  const count = 25;
+  for(let step = 0; step < count; step++) {
+    const id = step + 1;
+    const url = `photos/${id}.jpg`;
+    const somePhoto = {
+      id: step + 1,
+      url: url,
+      description: descriptions[getRandomPositiveInteger(0, descriptions.length -1)],
       likes: getRandomPositiveInteger(15, 200),
     };
 
-    const CREATE_COMMENT = () => {
+    const createComments = () => {
 
-      const MESSAGES = [
+      const messages = [
         'Всё отлично!',
         'В целом всё неплохо. Но не всё.',
         'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -56,7 +56,7 @@ const createDescriptionPhoto = () => {
       /* список персонажей вселенной видеоигры Red Dead Redemption 2 от компании Rockstar Games.
  https://ru.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BF%D0%B5%D1%80%D1%81%D0%BE%D0%BD%D0%B0%D0%B6%D0%B5%D0%B9_Red_Dead_Redemption_2*/
 
-      const NAMES = [
+      const names = [
         'Датч Ван дер Линде',
         'Артур Морган',
         'Джон Марстон',
@@ -85,23 +85,26 @@ const createDescriptionPhoto = () => {
       ];
 
 
-      const AVATAR = `img/avatar-${  getRandomPositiveInteger(1, 6)  }.svg`;
-
-      return {
-        id: SOME_PHOTO.id * 2,
-        avatar: AVATAR,
-        message: [MESSAGES[getRandomPositiveInteger(0, MESSAGES.length - 1)]],
-        name: NAMES[getRandomPositiveInteger(0, NAMES.length -1)],
-      };
+      const comments = [];
+      const commentsCount = 3;
+      for(let idexComment = 0; idexComment <= commentsCount; idexComment++) {
+        const someComent = {
+          id: idexComment + (commentsCount + 1) * somePhoto.id,
+          avatar: `img/avatar-${  getRandomPositiveInteger(1, 6)  }.svg`,
+          message: [messages[getRandomPositiveInteger(0, messages.length - 1)]],
+          name: names[getRandomPositiveInteger(0, names.length -1)],
+        };
+        comments[idexComment] = someComent;
+      } return comments;
     };
 
-    SOME_PHOTO.comments = CREATE_COMMENT();
+    somePhoto.comments = createComments();
 
 
-    LIST_PHOTO[step] = SOME_PHOTO;
+    listPhoto[step] = somePhoto;
   }
 
-  return LIST_PHOTO;
+  return listPhoto;
 };
 
 createDescriptionPhoto();
