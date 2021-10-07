@@ -1,4 +1,3 @@
-function checkStringLength (string, length) {
-  return string.length <= length;
-}
-checkStringLength (10, 12);
+const isLengthStringOk = (stringLength, maxSymbols) => (stringLength <= maxSymbols);
+
+isLengthStringOk(109, 100);
