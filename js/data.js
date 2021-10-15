@@ -1,7 +1,4 @@
 
-// Функция взята из интернета и доработана
-// Источник - https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore#_random
-
 import { getRandomPositiveInteger } from './utils/get-random-positive-integer.js';
 
 
