@@ -1,4 +1,2 @@
-
-import { createDescriptionPhoto, DESCRIPTIONS, NUMBER_OF_PHOTOS} from './data.js';
-
-createDescriptionPhoto(DESCRIPTIONS, NUMBER_OF_PHOTOS);
+import {contentContainerList} from './background-content.js';
+contentContainerList;
