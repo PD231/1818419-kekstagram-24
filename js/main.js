@@ -1,2 +1,3 @@
-import {contentContainerList} from './background-content.js';
-contentContainerList;
+import { clickPhoto, miniaturesContainer } from './click-photo.js';
+
+clickPhoto(miniaturesContainer);
