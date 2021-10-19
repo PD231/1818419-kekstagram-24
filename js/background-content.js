@@ -1,19 +1,28 @@
-
 import { createDescriptionPhoto, DESCRIPTIONS, NUMBER_OF_PHOTOS} from './data.js';
 
-
-const contentContainerList = document.querySelector('.pictures');
-const contentTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const contentData = createDescriptionPhoto(DESCRIPTIONS, NUMBER_OF_PHOTOS);
-const containerDataFragment = document.createDocumentFragment();
 
-for (const content of contentData) {
-  const contentElement = contentTemplate.cloneNode(true);
-  contentElement.querySelector('.picture__img').src = content.url;
-  contentElement.querySelector('.picture__comments').textContent = content.comments.length;
-  contentElement.querySelector('.picture__likes').textContent = content.likes;
-  containerDataFragment.appendChild(contentElement);
-}
-contentContainerList.appendChild(containerDataFragment);
+const backgroundContent = (data) => {
 
-export {contentContainerList};
+  const contentContainerList = document.querySelector('.pictures'); //куда вставляется шаблон
+  const contentTemplate = document.querySelector('#picture').content.querySelector('.picture'); //сам шаблон
+  const containerDataFragment = document.createDocumentFragment(); // фрагмент
+
+
+  for(let i = 0; i < data.length; i++) {
+
+    const contentElement = contentTemplate.cloneNode(true);
+    contentElement.querySelector('.picture__img').src = data[i].url;
+    contentElement.querySelector('.picture__likes').textContent = data[i].likes;
+    contentElement.querySelector('.picture__img').alt = data[i].description;
+    const coments = data[i].comments;
+    contentElement.querySelector('.picture__comments').textContent = coments.length;
+
+    containerDataFragment.appendChild(contentElement);
+  }
+  contentContainerList.appendChild(containerDataFragment);
+
+  return contentContainerList;
+};
+
+export {backgroundContent, contentData};
