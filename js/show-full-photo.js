@@ -29,7 +29,7 @@ const showFullPhoto = () => {
     }};
 
   bigPictures.addEventListener('click', fillPost);
-  closeWindow(fullPhoto, closeButton, socialComments);
+  closeWindow(fullPhoto, closeButton, '');
 
 };
 

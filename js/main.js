@@ -2,7 +2,8 @@ import {showFullPhoto, miniaturesContainer } from './show-full-photo.js';
 import {closeWindow} from './utils/close-window.js';
 import {changeSize} from './utils/change-size.js';
 import {openWindow} from './utils/open-window.js';
-import {validity} from './validity.js';
+import {validityHashTag, validityDescription} from './validity.js';
+import { reset } from './utils/reset.js';
 
 showFullPhoto(miniaturesContainer);
 
@@ -17,7 +18,6 @@ const controlValue = uploadForm.querySelector('.scale__control--value');
 const preview = uploadForm.querySelector('.img-upload__preview');
 const effectsList = document.querySelector('.effects__list');
 
-
 const uploadPhoto = () => {
   openWindow(uploadButton, uploadOverlay);
   changeSize(preview, 25, 25, 100, controlValue, controlSmaller, controlBigger);
@@ -28,8 +28,10 @@ const uploadPhoto = () => {
   };
 
   effectsList.addEventListener('click', choosedEffect);
-  validity();
-  closeWindow(uploadOverlay, closeButton);
+  validityHashTag();
+  validityDescription();
+  reset();
+  closeWindow(uploadOverlay, closeButton,'', uploadForm);
 };
 
 
