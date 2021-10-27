@@ -1,9 +1,8 @@
 
 
 const changeSize = (item, changingPercent, minSize, maxSize, changingValue, smaller, bigger) => {
-
-  let previewSize = 1;
   let number = parseInt(changingValue.value, 10);
+  let previewSize = 1;
 
   smaller.addEventListener('click', () => {
     number -= changingPercent;
@@ -15,7 +14,6 @@ const changeSize = (item, changingPercent, minSize, maxSize, changingValue, smal
       changingValue.value = `${number}%`;
     }
     item.style.transform = `scale(${previewSize})`;
-
   });
 
   bigger.addEventListener('click', () => {

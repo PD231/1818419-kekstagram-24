@@ -1,5 +1,6 @@
 import {getBackgroundContent, contentData} from './background-content.js';
 import { showComment } from './show-coment.js';
+import { openWindow } from './utils/open-window.js';
 import { closeWindow } from './utils/close-window.js';
 const miniaturesContainer = getBackgroundContent(contentData);
 
@@ -15,10 +16,9 @@ const showFullPhoto = () => {
   const fillPost = (evt) => {
     if (evt.target.closest('.picture')) {
       socialComments.innerHTML = '';
-      fullPhoto.classList.remove('hidden');
+      openWindow(fullPhoto);
       fullPhoto.querySelector('.comments-loader').classList.add('hidden');
       fullPhoto.querySelector('.social__comment-count').classList.add('hidden');
-      document.querySelector('body').classList.add('.modal-open');
       fullPhoto.querySelector('img').src = evt.target.closest('.picture').querySelector('.picture__img').src;
       fullPhotoSocial.querySelector('.likes-count').textContent = evt.target.closest('.picture').querySelector('.picture__likes').textContent;
       const idMiniatures = evt.target.closest('.picture').querySelector('.picture__img').id;
@@ -30,7 +30,6 @@ const showFullPhoto = () => {
 
   bigPictures.addEventListener('click', fillPost);
   closeWindow(fullPhoto, closeButton, '');
-
 };
 
 

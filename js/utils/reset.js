@@ -9,6 +9,14 @@ const reset = () => {
     preview.querySelector('img').classList.value = '';
     uploadForm.reset();
   });
+
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+      preview.style = '';
+      preview.querySelector('img').classList.value = '';
+      uploadForm.reset();
+    }
+  });
 };
 
 export{reset};
