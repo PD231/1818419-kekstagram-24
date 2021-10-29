@@ -1,3 +1,5 @@
-import { clickPhoto, miniaturesContainer } from './click-photo.js';
+import {showFullPhoto, miniaturesContainer } from './show-full-photo.js';
+import {uploadPhoto} from './upload-photo.js';
+showFullPhoto(miniaturesContainer );
 
-clickPhoto(miniaturesContainer);
+uploadPhoto();
