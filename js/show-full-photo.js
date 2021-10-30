@@ -11,26 +11,41 @@ const showFullPhoto = () => {
   const closeButton = fullPhoto.querySelector('.big-picture__cancel');
   const bigPictures = document.querySelector('.pictures');
   const socialComments = fullPhoto.querySelector('.social__comments');
+  const lastComment = fullPhoto.querySelector('.comments-count');
 
 
   const fillPost = (evt) => {
     if (evt.target.closest('.picture')) {
       socialComments.innerHTML = '';
       openWindow(fullPhoto);
-      fullPhoto.querySelector('.comments-loader').classList.add('hidden');
-      fullPhoto.querySelector('.social__comment-count').classList.add('hidden');
+      const addComments = fullPhoto.querySelector('.comments-loader');
       fullPhoto.querySelector('img').src = evt.target.closest('.picture').querySelector('.picture__img').src;
       fullPhotoSocial.querySelector('.likes-count').textContent = evt.target.closest('.picture').querySelector('.picture__likes').textContent;
       const idMiniatures = evt.target.closest('.picture').querySelector('.picture__img').id;
       const postData = contentData.find((item) => item.id === +idMiniatures);
       fullPhotoSocial.querySelector('.social__caption').textContent = postData.description;
-      fullPhoto.querySelector('.comments-count').textContent = `${(postData.comments).length} из 125 коментариев`;
-      (postData.comments).forEach(showComment);
+
+      const comments = (postData.comments).slice();
+      let startComment = 0;
+      const visibleNumberComment = 5;
+      let finishComment = visibleNumberComment;
+      const commentsUnderPhoto = comments.slice(startComment, finishComment);
+      commentsUnderPhoto.forEach(showComment);
+      let sumComments = commentsUnderPhoto.length;
+      addComments.addEventListener('click', () => {
+        startComment += visibleNumberComment;
+        finishComment += visibleNumberComment;
+        const adderComments = comments.slice(startComment, finishComment);
+        adderComments.forEach(showComment);
+        sumComments+=adderComments.length;
+        document.querySelector('.social__comment-count').textContent = `${sumComments } из ${  lastComment.textContent  } комментариев`;
+      });
+      lastComment.textContent = comments.length;
+      document.querySelector('.social__comment-count').textContent = `${sumComments } из ${  lastComment.textContent  } комментариев`;
+
     }};
 
   bigPictures.addEventListener('click', fillPost);
   closeWindow(fullPhoto, closeButton, '');
 };
-
-
 export {showFullPhoto, miniaturesContainer};

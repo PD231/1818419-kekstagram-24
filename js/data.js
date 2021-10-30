@@ -57,7 +57,7 @@ const NAMES = [
 ];
 
 const NUMBER_OF_PHOTOS = 25;
-const NUMBER_OF_COMMENTS = 3;
+const NUMBER_OF_COMMENTS = 30;
 
 const createDescriptionPhoto = (descriptions, numberOfPhotos) => {
 
