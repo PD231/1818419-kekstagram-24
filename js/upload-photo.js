@@ -15,7 +15,8 @@ const controlValue = uploadForm.querySelector('.scale__control--value');
 const preview = uploadForm.querySelector('.img-upload__preview');
 const effectsList = document.querySelector('.effects__list');
 
-
+const a =7;
+a +3;
 const uploadPhoto = () => {
   uploadButton.addEventListener('change', (evt) => {
     evt.preventDefault();
