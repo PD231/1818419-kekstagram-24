@@ -1,4 +1,4 @@
-import '/nouislider/nouislider.js';
+import '../nouislider/nouislider.js';
 import {closeWindow} from './utils/close-window.js';
 import {changeSize} from './utils/change-size.js';
 import {openWindow} from './utils/open-window.js';
