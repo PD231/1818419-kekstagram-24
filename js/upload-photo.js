@@ -36,3 +36,5 @@ const uploadPhoto = () => {
 };
 
 export {uploadPhoto};
+const a = 1;
+a+2;
