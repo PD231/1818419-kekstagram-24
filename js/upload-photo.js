@@ -14,7 +14,6 @@ const preview = uploadForm.querySelector('.img-upload__preview');
 const effectsList = document.querySelector('.effects__list');
 const sliderElement = document.querySelector('.effect-level__slider');
 const sliderValue = document.querySelector('.effect-level__value');
-
 const kindOfEffects = [
   {
     value: 'none' ,
