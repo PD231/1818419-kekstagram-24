@@ -1,31 +1,39 @@
 
 
-const changeSize = (item, changingPercent, minSize, maxSize, changingValue, smaller, bigger) => {
-  let number = parseInt(changingValue.value, 10);
-  let previewSize = 1;
+const uploadForm = document.querySelector('.img-upload__form');
+const preview = uploadForm.querySelector('.img-upload__preview');
+const controlSmaller = uploadForm.querySelector('.scale__control--smaller');
+const controlBigger = uploadForm.querySelector('.scale__control--bigger');
+const controlValue = uploadForm.querySelector('.scale__control--value');
 
-  smaller.addEventListener('click', () => {
-    number -= changingPercent;
-    previewSize -= (changingPercent/100);
-    changingValue.value = `${number}%`;
-    if(number <= minSize) {
-      number = minSize;
-      previewSize = 0.25;
-      changingValue.value = `${number}%`;
+
+const changingPercent = 25;
+const minSize = 25;
+const maxSize = 100;
+
+const changeSize = ( ) => {
+  controlSmaller.addEventListener('click', () => {
+    let numberFromControl = parseInt(controlValue.value, 10);
+    numberFromControl -= changingPercent;
+    controlValue.value = `${numberFromControl}%`;
+    if(numberFromControl <= minSize) {
+      numberFromControl = minSize;
+      controlValue.value = `${numberFromControl}%`;
     }
-    item.style.transform = `scale(${previewSize})`;
+    preview.style.transform = `scale(${numberFromControl/100})`;
   });
 
-  bigger.addEventListener('click', () => {
-    number += changingPercent;
-    previewSize += (changingPercent/100);
-    changingValue.value = `${number}%`;
-    if(number > maxSize) {
-      number = maxSize;
-      previewSize = 1;
-      changingValue.value = `${number}%`;
+  controlBigger.addEventListener('click', () => {
+    let numberFromControl = parseInt(controlValue.value, 10);
+
+    numberFromControl += changingPercent;
+    controlValue.value = `${numberFromControl}%`;
+
+    if(numberFromControl > maxSize) {
+      numberFromControl = maxSize;
+      controlValue.value = `${numberFromControl}%`;
     }
-    item.style.transform = `scale(${previewSize})`;
+    preview.style.transform = `scale(${numberFromControl/100})`;
   });
 };
 export {changeSize};
