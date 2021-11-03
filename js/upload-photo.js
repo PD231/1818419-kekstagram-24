@@ -1,9 +1,9 @@
+import '/nouislider/nouislider.js';
 import {closeWindow} from './utils/close-window.js';
 import {changeSize} from './utils/change-size.js';
 import {openWindow} from './utils/open-window.js';
 import {validityHashTag, validityDescription} from './validity.js';
 import { reset } from './utils/reset.js';
-import '/nouislider/nouislider.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadButton = document.querySelector('#upload-file');
