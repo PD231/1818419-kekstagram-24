@@ -30,16 +30,22 @@ const closeWindowAfterSubmit = () => {
 
 const showMessageOfSuccess = () => {
   const messageTemplate = document.querySelector('#success').content.querySelector('.success');
+  const containerSuccessMessageFragment = document.createDocumentFragment();
+
   const messageOfSuccess = messageTemplate.cloneNode(true);
-  document.querySelector('body').appendChild(messageOfSuccess);
+
+  containerSuccessMessageFragment.appendChild(messageOfSuccess);
+  document.querySelector('body').appendChild(containerSuccessMessageFragment);
   const buttonCloseSuccessMessage = messageOfSuccess.querySelector('.success__button');
   closeApiMessage(buttonCloseSuccessMessage, messageOfSuccess, '.success__inner');
 };
 
 const someFail = () => {
   const messageErrorTemplate = document.querySelector('#error').content.querySelector('.error');
+  const containerFailMessageFragment = document.createDocumentFragment();
   const messageOfError = messageErrorTemplate.cloneNode(true);
-  document.querySelector('body').appendChild(messageOfError);
+  containerFailMessageFragment.appendChild(messageOfError);
+  document.querySelector('body').appendChild(containerFailMessageFragment);
   const buttonCloseErrorMessage = messageOfError.querySelector('.error__button');
   closeApiMessage(buttonCloseErrorMessage, messageOfError, '.error__inner');
 };
