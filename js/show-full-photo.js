@@ -1,9 +1,8 @@
-import {getBackgroundContent, contentData} from './background-content.js';
 import { showComment } from './show-coment.js';
 import { openWindow } from './utils/open-window.js';
 import { closeWindow } from './utils/close-window.js';
-const miniaturesContainer = getBackgroundContent(contentData);
-
+import { getData } from './api-fetch.js';
+import { errorMessage } from './error-message.js';
 
 const showFullPhoto = () => {
   const fullPhoto = document.querySelector('.big-picture');
@@ -22,30 +21,37 @@ const showFullPhoto = () => {
       fullPhoto.querySelector('img').src = evt.target.closest('.picture').querySelector('.picture__img').src;
       fullPhotoSocial.querySelector('.likes-count').textContent = evt.target.closest('.picture').querySelector('.picture__likes').textContent;
       const idMiniatures = evt.target.closest('.picture').querySelector('.picture__img').id;
-      const postData = contentData.find((item) => item.id === +idMiniatures);
-      fullPhotoSocial.querySelector('.social__caption').textContent = postData.description;
 
-      const comments = (postData.comments).slice();
-      let startComment = 0;
-      const visibleNumberComment = 5;
-      let finishComment = visibleNumberComment;
-      const commentsUnderPhoto = comments.slice(startComment, finishComment);
-      commentsUnderPhoto.forEach(showComment);
-      let sumComments = commentsUnderPhoto.length;
-      addComments.addEventListener('click', () => {
-        startComment += visibleNumberComment;
-        finishComment += visibleNumberComment;
-        const adderComments = comments.slice(startComment, finishComment);
-        adderComments.forEach(showComment);
-        sumComments+=adderComments.length;
+      const findComments = (data) => {
+        const postData = data.find((item) => item.id === +idMiniatures);
+        fullPhotoSocial.querySelector('.social__caption').textContent = postData.description;
+
+        const comments = (postData.comments).slice();
+        let startComment = 0;
+        const visibleNumberComment = 5;
+        let finishComment = visibleNumberComment;
+        const commentsUnderPhoto = comments.slice(startComment, finishComment);
+        commentsUnderPhoto.forEach(showComment);
+        let sumComments = commentsUnderPhoto.length;
+        lastComment.textContent = comments.length;
         document.querySelector('.social__comment-count').textContent = `${sumComments } из ${  lastComment.textContent  } комментариев`;
-      });
-      lastComment.textContent = comments.length;
-      document.querySelector('.social__comment-count').textContent = `${sumComments } из ${  lastComment.textContent  } комментариев`;
 
+        addComments.addEventListener('click', () => {
+          startComment += visibleNumberComment;
+          finishComment += visibleNumberComment;
+          const adderComments = comments.slice(startComment, finishComment);
+          adderComments.forEach(showComment);
+          sumComments+=adderComments.length;
+          document.querySelector('.social__comment-count').textContent = `${sumComments } из ${  lastComment.textContent  } комментариев`;
+        });
+      };
+      const frameComments = getData(findComments, errorMessage);
+      frameComments();
     }};
 
+
   bigPictures.addEventListener('click', fillPost);
-  closeWindow(fullPhoto, closeButton, '');
+  closeWindow(fullPhoto, closeButton);
 };
-export {showFullPhoto, miniaturesContainer};
+
+export {showFullPhoto};
