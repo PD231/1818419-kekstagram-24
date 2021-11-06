@@ -5,14 +5,14 @@ const controlBigger = uploadForm.querySelector('.scale__control--bigger');
 const controlValue = uploadForm.querySelector('.scale__control--value');
 
 
-const changingPercent = 25;
+const CHANGING_PERCENT = 25;
 const minSize = 25;
 const maxSize = 100;
 
 const changeSize = ( ) => {
   controlSmaller.addEventListener('click', () => {
     let numberFromControl = parseInt(controlValue.value, 10);
-    numberFromControl -= changingPercent;
+    numberFromControl -= CHANGING_PERCENT;
     controlValue.value = `${numberFromControl}%`;
     if(numberFromControl <= minSize) {
       numberFromControl = minSize;
@@ -24,7 +24,7 @@ const changeSize = ( ) => {
   controlBigger.addEventListener('click', () => {
     let numberFromControl = parseInt(controlValue.value, 10);
 
-    numberFromControl += changingPercent;
+    numberFromControl += CHANGING_PERCENT;
     controlValue.value = `${numberFromControl}%`;
 
     if(numberFromControl > maxSize) {

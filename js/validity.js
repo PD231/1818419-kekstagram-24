@@ -60,6 +60,9 @@ const validityDescription = () => {
 
 };
 
+buttonsubmit.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+});
 
 export {validityHashTag, validityDescription};
 

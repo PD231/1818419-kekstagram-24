@@ -1,12 +1,9 @@
-import { createDescriptionPhoto, DESCRIPTIONS, NUMBER_OF_PHOTOS} from './data.js';
-
-const contentData = createDescriptionPhoto(DESCRIPTIONS, NUMBER_OF_PHOTOS);
 
 const getBackgroundContent = (data) => {
 
-  const contentContainerList = document.querySelector('.pictures'); //куда вставляется шаблон
-  const contentTemplate = document.querySelector('#picture').content.querySelector('.picture'); //сам шаблон
-  const containerDataFragment = document.createDocumentFragment(); // фрагмент
+  const contentContainerList = document.querySelector('.pictures');
+  const contentTemplate = document.querySelector('#picture').content.querySelector('.picture');
+  const containerDataFragment = document.createDocumentFragment();
 
 
   for(let i = 0; i < data.length; i++) {
@@ -26,4 +23,4 @@ const getBackgroundContent = (data) => {
   return contentContainerList;
 };
 
-export {getBackgroundContent, contentData};
+export {getBackgroundContent};
