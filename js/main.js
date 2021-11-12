@@ -1,12 +1,15 @@
 import {showFullPhoto} from './show-full-photo.js';
 import {uploadPhoto} from './upload-photo.js';
-import {getBackgroundContent} from './background-content.js';
-import { errorMessage } from './error-message.js';
-import { getData } from './api-fetch.js';
+import {miniatures} from './background-content.js';
 import { setSubmit } from './api-fetch.js';
-import { showMessageOfSuccess, someFail, closeWindowAfterSubmit } from './api-cheked.js';
+import { showMessageOfSuccess, checkSomeFail, closeWindowAfterSubmit } from './api-cheked.js';
+import {showFilters} from './get-sort-miniatures.js';
+import { cleanMiniatures } from './utils/clean-miniatures.js';
 
-const miniatures = getData(getBackgroundContent, errorMessage);
 showFullPhoto(miniatures());
 uploadPhoto();
-setSubmit(closeWindowAfterSubmit,  showMessageOfSuccess, someFail);
+setSubmit(closeWindowAfterSubmit,  showMessageOfSuccess, checkSomeFail);
+document.querySelector('.img-filters__form').addEventListener('click', cleanMiniatures);
+showFilters();
+
+

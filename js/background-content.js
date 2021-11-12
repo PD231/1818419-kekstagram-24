@@ -1,4 +1,10 @@
 
+import { getData } from './api-fetch.js';
+import { errorMessage } from './error-message.js';
+import { debounce } from './utils/debounce.js';
+const uploadPause = 500;
+
+
 const getBackgroundContent = (data) => {
 
   const contentContainerList = document.querySelector('.pictures');
@@ -7,7 +13,6 @@ const getBackgroundContent = (data) => {
 
 
   for(let i = 0; i < data.length; i++) {
-
     const contentElement = contentTemplate.cloneNode(true);
     contentElement.querySelector('.picture__img').src = data[i].url;
     contentElement.querySelector('.picture__likes').textContent = data[i].likes;
@@ -18,9 +23,16 @@ const getBackgroundContent = (data) => {
 
     containerDataFragment.appendChild(contentElement);
   }
+
   contentContainerList.appendChild(containerDataFragment);
 
   return contentContainerList;
 };
 
-export {getBackgroundContent};
+
+const miniatures = debounce(getData(getBackgroundContent, errorMessage), uploadPause);
+
+
+export {getBackgroundContent, miniatures, uploadPause};
+
+

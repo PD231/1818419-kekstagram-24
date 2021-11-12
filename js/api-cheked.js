@@ -40,7 +40,7 @@ const showMessageOfSuccess = () => {
   closeApiMessage(buttonCloseSuccessMessage, messageOfSuccess, '.success__inner');
 };
 
-const someFail = () => {
+const checkSomeFail = () => {
   const messageErrorTemplate = document.querySelector('#error').content.querySelector('.error');
   const containerFailMessageFragment = document.createDocumentFragment();
   const messageOfError = messageErrorTemplate.cloneNode(true);
@@ -50,4 +50,4 @@ const someFail = () => {
   closeApiMessage(buttonCloseErrorMessage, messageOfError, '.error__inner');
 };
 
-export {showMessageOfSuccess, someFail, closeWindowAfterSubmit};
+export {showMessageOfSuccess, checkSomeFail, closeWindowAfterSubmit};
