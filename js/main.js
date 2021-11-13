@@ -5,10 +5,11 @@ import { setSubmit } from './api-fetch.js';
 import { showMessageOfSuccess, checkSomeFail, closeWindowAfterSubmit } from './api-cheked.js';
 import {showFilters} from './get-sort-miniatures.js';
 import { doChangeFilter} from './utils/change-filter.js';
+import {uploadPicture} from './upload-picture.js';
 
 showFullPhoto(miniatures());
 uploadPhoto();
 setSubmit(closeWindowAfterSubmit,  showMessageOfSuccess, checkSomeFail);
 showFilters();
 doChangeFilter;
-
+uploadPicture();
