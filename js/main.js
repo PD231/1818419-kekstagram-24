@@ -6,7 +6,6 @@ import { showMessageOfSuccess, checkSomeFail, closeWindowAfterSubmit } from './a
 import {showFilters} from './get-sort-miniatures.js';
 import { doChangeFilter} from './utils/change-filter.js';
 
-
 showFullPhoto(miniatures());
 uploadPhoto();
 setSubmit(closeWindowAfterSubmit,  showMessageOfSuccess, checkSomeFail);
