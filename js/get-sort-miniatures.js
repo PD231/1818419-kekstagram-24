@@ -1,6 +1,6 @@
 import { getRandomPositiveInteger } from './utils/get-random-positive-integer.js';
 import { errorMessage } from './error-message.js';
-import { getBackgroundContent, uploadPause } from './background-content.js';
+import { getBackgroundContent, timeToPause } from './background-content.js';
 import { getData } from './api-fetch.js';
 import { miniatures } from './background-content.js';
 import { debounce } from './utils/debounce.js';
@@ -34,7 +34,7 @@ const getRandomMiniatures = (data) => {
 
   getBackgroundContent(randomMiniatures);
 };
-const frameRandomMiniatures = debounce(getData(getRandomMiniatures, errorMessage), uploadPause);
+const frameRandomMiniatures = debounce(getData(getRandomMiniatures, errorMessage), timeToPause);
 
 
 const getDiscussedSort = (data) => {
@@ -42,7 +42,7 @@ const getDiscussedSort = (data) => {
   discussedMiniatures.sort((a, b) => b.comments.length - a.comments.length );
   getBackgroundContent(discussedMiniatures);
 };
-const frameDiscussedMiniatures = debounce(getData(getDiscussedSort, errorMessage), uploadPause);
+const frameDiscussedMiniatures = debounce(getData(getDiscussedSort, errorMessage), timeToPause);
 
 
 const showFilters = () => {

@@ -4,12 +4,12 @@ import {miniatures} from './background-content.js';
 import { setSubmit } from './api-fetch.js';
 import { showMessageOfSuccess, checkSomeFail, closeWindowAfterSubmit } from './api-cheked.js';
 import {showFilters} from './get-sort-miniatures.js';
-import { cleanMiniatures } from './utils/clean-miniatures.js';
+import { doChangeFilter} from './utils/change-filter.js';
+
 
 showFullPhoto(miniatures());
 uploadPhoto();
 setSubmit(closeWindowAfterSubmit,  showMessageOfSuccess, checkSomeFail);
-document.querySelector('.img-filters__form').addEventListener('click', cleanMiniatures);
 showFilters();
-
+doChangeFilter;
 
