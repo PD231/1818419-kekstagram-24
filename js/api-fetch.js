@@ -1,5 +1,6 @@
+const dataWay = 'https://24.javascript.pages.academy/kekstagram/data';
 
-const getData = (onSuccess, onError) => () => fetch('https://24.javascript.pages.academy/kekstagram/data')
+const getData = (onSuccess, onError) => () => fetch(dataWay)
   .then((response) => {
     if (response.ok) {
       return response.json();
@@ -10,19 +11,21 @@ const getData = (onSuccess, onError) => () => fetch('https://24.javascript.pages
   .then((data) => {
     onSuccess(data);
   })
+  .then(document.querySelector('.img-filters').classList.remove('img-filters--inactive'))
   .catch((err) => {
     onError(err);
   });
 
-const uploadForm = document.querySelector('.img-upload__form');
+const formToUpload = document.querySelector('.img-upload__form');
 
+const setWay = 'https://24.javascript.pages.academy/kekstagram';
 
 const setSubmit = (closeWindow, messageSuccess, onFail ) => {
-  uploadForm.addEventListener('submit', (evt) => {
+  formToUpload.addEventListener('submit', (evt) => {
     evt.preventDefault();
     const formData = new FormData(evt.target);
 
-    fetch ('https://24.javascript.pages.academy/kekstagram',
+    fetch (setWay,
       {
         method: 'POST',
         body: formData,
