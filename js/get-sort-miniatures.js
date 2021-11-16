@@ -4,7 +4,7 @@ import { getBackgroundContent, TIME_TO_PAUSE } from './background-content.js';
 import { getData } from './api-fetch.js';
 import { miniatures } from './background-content.js';
 import { debounce } from './utils/debounce.js';
-const backgroundSize = 10;
+const BACKGROUND_SIZE = 10;
 
 
 const setMinMax = (min, max, size) => {
@@ -25,7 +25,7 @@ const setMinMax = (min, max, size) => {
 
 const getRandomMiniatures = (data) => {
 
-  const numbersId = setMinMax(data[0].id, data.length-1, backgroundSize);
+  const numbersId = setMinMax(data[0].id, data.length-1, BACKGROUND_SIZE);
   const randomMiniatures =[];
   for (let i = 0; i < numbersId.length; i++) {
     const postData = data.find((item) => item.id === numbersId[i]);
