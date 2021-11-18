@@ -1,8 +1,9 @@
 import { showComment } from './show-coment.js';
 import { openWindow } from './utils/open-window.js';
-import { closeWindow } from './utils/close-window.js';
+import { closeWindow} from './utils/close-window.js';
 import { getData } from './api-fetch.js';
-import { errorMessage } from './error-message.js';
+import { showErrorMessage } from './error-message.js';
+
 
 const showFullPhoto = () => {
   const fullPhoto = document.querySelector('.big-picture');
@@ -12,11 +13,11 @@ const showFullPhoto = () => {
   const socialComments = fullPhoto.querySelector('.social__comments');
   const lastComment = fullPhoto.querySelector('.comments-count');
 
-
   const fillPost = (evt) => {
     if (evt.target.closest('.picture')) {
       socialComments.innerHTML = '';
       openWindow(fullPhoto);
+      closeWindow(fullPhoto, closeButton);
       const addComments = fullPhoto.querySelector('.comments-loader');
       fullPhoto.querySelector('img').src = evt.target.closest('.picture').querySelector('.picture__img').src;
       fullPhotoSocial.querySelector('.likes-count').textContent = evt.target.closest('.picture').querySelector('.picture__likes').textContent;
@@ -45,13 +46,12 @@ const showFullPhoto = () => {
           document.querySelector('.social__comment-count').textContent = `${sumComments } из ${  lastComment.textContent  } комментариев`;
         });
       };
-      const frameComments = getData(findComments, errorMessage);
+      const frameComments = getData(findComments, showErrorMessage);
       frameComments();
     }};
 
 
   bigPictures.addEventListener('click', fillPost);
-  closeWindow(fullPhoto, closeButton);
 };
 
 export {showFullPhoto};

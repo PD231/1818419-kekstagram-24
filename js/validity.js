@@ -1,24 +1,24 @@
 
-
 const hashTagForm = document.querySelector('.text__hashtags');
 const buttonsubmit = document.querySelector('.img-upload__submit');
 const descriptionText = document.querySelector('.text__description');
 
-const validityHashTag = () => {
-  const regelarSentence = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
+const validateHashTag = () => {
+  const regularSentence = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
 
   hashTagForm.addEventListener('input', () => {
-    const hashTags = hashTagForm.value.split(' ');
-
+    let hashTags = '';
+    hashTags = hashTagForm.value.split(' ');
     for ( const element of hashTags) {
       if (!element.startsWith('#')) {
         hashTagForm.style.outline = '1px solid tomato';
         hashTagForm.setCustomValidity('Хэш-тег должен начинаться со знака #');
-      } else if (element.search(regelarSentence)){
-        hashTagForm.setCustomValidity('Хэш-тег должен состоять из букв и чисел и не может содержать пробелы, спецсимволы (#, @, $ и т. п.), символы пунктуации (тире, дефис, запятая и т. п.), эмодзи и т. д.;');
-      }
-      else {
+      } else if (element.search(regularSentence)){
+        hashTagForm.style.outline = '1px solid tomato';
+        hashTagForm.setCustomValidity('Хэш-тег должен содержать более 2-х символов и состоять из букв и чисел и не может содержать пробелы, спецсимволы (#, @, $ и т. п.), символы пунктуации (тире, дефис, запятая и т. п.), эмодзи и т. д.;');
+      } else {
         hashTagForm.setCustomValidity('');
+        hashTagForm.style.outline = '';
       }
     }
 
@@ -27,9 +27,18 @@ const validityHashTag = () => {
       hashTagForm.setCustomValidity('');
     }
 
-    const uniqHashTags = [... new Set(hashTags)];
+    const copiesHashTags = hashTags.slice();
+    const UPPERCASE_HASH_TAGS = [];
+    for (const item of copiesHashTags) {
+      const upperHashTag = item.toUpperCase();
+      UPPERCASE_HASH_TAGS.push(upperHashTag);
+    }
+
+    const uniqHashTags = [... new Set(UPPERCASE_HASH_TAGS)];
+
     if (hashTags.length !== uniqHashTags.length) {
       hashTagForm.setCustomValidity('Хэш-теги не должны повторяться');
+      hashTagForm.style.outline = '1px solid tomato';
     }
 
     if (hashTags.length > 5) {
@@ -41,7 +50,7 @@ const validityHashTag = () => {
   });
 };
 
-const validityDescription = () => {
+const validateDescription = () => {
 
   descriptionText.addEventListener('input', () => {
     const descriptionSize = descriptionText.value.length;
@@ -64,5 +73,5 @@ buttonsubmit.addEventListener('submit', (evt) => {
   evt.preventDefault();
 });
 
-export {validityHashTag, validityDescription};
+export {validateHashTag, validateDescription};
 

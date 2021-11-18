@@ -1,6 +1,7 @@
-import { preview, destroySlider} from '../upload-photo.js';
+import { destroySlider, preview } from '../get-slider.js';
 const uploadForm = document.querySelector('.img-upload__form');
 const controlValue = uploadForm.querySelector('.scale__control--value');
+const hashTagForm = document.querySelector('.text__hashtags');
 
 const reset = () => {
   preview.style = '';
@@ -9,7 +10,7 @@ const reset = () => {
   uploadForm.reset();
   destroySlider();
   preview.querySelector('img').style = '';
+  hashTagForm.style.outline = '';
+  hashTagForm.value = '';
 };
-
-
 export{reset};

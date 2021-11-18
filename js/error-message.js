@@ -1,6 +1,6 @@
 const ERROR_SHOW_TIME = 7000;
 
-const errorMessage = (message) => {
+const showErrorMessage = (message) => {
   const errorContainer = document.createElement('div');
   errorContainer.style.zIndex = 100;
   errorContainer.style.position = 'absolute';
@@ -21,4 +21,4 @@ const errorMessage = (message) => {
   }, ERROR_SHOW_TIME);
 };
 
-export {errorMessage};
+export {showErrorMessage};

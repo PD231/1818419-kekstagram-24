@@ -35,12 +35,10 @@ const setSubmit = (closeWindow, messageSuccess, onFail ) => {
         if (response.ok) {
           closeWindow();
           messageSuccess();
-        } else {
-          closeWindow();
-          onFail();
         }
       })
       .catch(() => {
+        closeWindow();
         onFail();
       });
   });

@@ -4,22 +4,27 @@ const uploadForm = document.querySelector('.img-upload__form');
 const uploadOverlay = uploadForm.querySelector('.img-upload__overlay');
 
 const closeApiMessage = (button, message, uncloseedSquare) => {
+  const addEscEventOnApiMessage = (evt) => {
+    if (evt.key === 'Escape') {
+      evt.preventDefault();
+      document.querySelector('body').removeChild(message);
+      document.removeEventListener('keydown', addEscEventOnApiMessage);
+    }
+  };
+
   button.addEventListener('click', () => {
     document.querySelector('body').removeChild(message);
+    document.removeEventListener('keydown', addEscEventOnApiMessage);
   });
 
   message.addEventListener('click', (evt) => {
     if(!evt.target.closest(uncloseedSquare)) {
       document.querySelector('body').removeChild(message);
+      document.removeEventListener('keydown', addEscEventOnApiMessage);
     }
   });
 
-  document.addEventListener('keydown', (evt) => {
-    if (evt.key === 'Escape') {
-      evt.preventDefault();
-      document.querySelector('body').removeChild(message);
-    }
-  });
+  document.addEventListener('keydown', addEscEventOnApiMessage);
 };
 
 const closeWindowAfterSubmit = () => {

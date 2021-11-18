@@ -1,6 +1,6 @@
 
 import { getData } from './api-fetch.js';
-import { errorMessage } from './error-message.js';
+import { showErrorMessage } from './error-message.js';
 import { debounce } from './utils/debounce.js';
 const TIME_TO_PAUSE = 500;
 
@@ -29,9 +29,9 @@ const getBackgroundContent = (data) => {
   return contentContainerList;
 };
 
-const miniatures = debounce(getData(getBackgroundContent, errorMessage), TIME_TO_PAUSE);
+const frameMiniatures = debounce(getData(getBackgroundContent, showErrorMessage), TIME_TO_PAUSE);
 
 
-export {getBackgroundContent, miniatures, TIME_TO_PAUSE};
+export {getBackgroundContent, frameMiniatures, TIME_TO_PAUSE};
 
 

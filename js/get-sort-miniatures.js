@@ -1,8 +1,8 @@
 import { getRandomPositiveInteger } from './utils/get-random-positive-integer.js';
-import { errorMessage } from './error-message.js';
+import { showErrorMessage } from './error-message.js';
 import { getBackgroundContent, TIME_TO_PAUSE } from './background-content.js';
 import { getData } from './api-fetch.js';
-import { miniatures } from './background-content.js';
+import { frameMiniatures } from './background-content.js';
 import { debounce } from './utils/debounce.js';
 const BACKGROUND_SIZE = 10;
 
@@ -34,7 +34,7 @@ const getRandomMiniatures = (data) => {
 
   getBackgroundContent(randomMiniatures);
 };
-const frameRandomMiniatures = debounce(getData(getRandomMiniatures, errorMessage), TIME_TO_PAUSE);
+const frameRandomMiniatures = debounce(getData(getRandomMiniatures, showErrorMessage), TIME_TO_PAUSE);
 
 
 const getDiscussedSort = (data) => {
@@ -42,7 +42,7 @@ const getDiscussedSort = (data) => {
   discussedMiniatures.sort((a, b) => b.comments.length - a.comments.length );
   getBackgroundContent(discussedMiniatures);
 };
-const frameDiscussedMiniatures = debounce(getData(getDiscussedSort, errorMessage), TIME_TO_PAUSE);
+const frameDiscussedMiniatures = debounce(getData(getDiscussedSort, showErrorMessage), TIME_TO_PAUSE);
 
 
 const showFilters = () => {
@@ -52,7 +52,7 @@ const showFilters = () => {
 
   buttonDiscussedFilter.addEventListener('click', frameDiscussedMiniatures);
   buttonRandomFilter.addEventListener('click', frameRandomMiniatures);
-  buttonDefaultFilter.addEventListener('click', miniatures);
+  buttonDefaultFilter.addEventListener('click', frameMiniatures);
 };
 
 
